@@ -1,0 +1,2549 @@
+<!DOCTYPE html>
+<!--
+  ==============================================================================
+  HARSHAL MUTHIYAN — PERSONAL PORTFOLIO & WRITING
+  Single-File, Zero-Build GitHub Pages Edition (index.html)
+  ==============================================================================
+  QUICK SETUP BEFORE DEPLOYING TO GITHUB PAGES:
+  1. Upload `index.html` and `Harshal_Muthiyan_Resume.pdf` into the root of your
+     GitHub Pages repository (e.g. `yourusername.github.io`).
+  2. Search for "TODO:" below and replace `#github` and `#linkedin` with your
+     real profile URLs.
+  3. To publish a new blog post, add an object to `BLOG_POSTS` near the top of
+     the <script> section and push to GitHub.
+  4. Choose your default theme ('paper' | 'ink' | 'midnight') in `DEFAULT_THEME`.
+  ==============================================================================
+-->
+<html lang="en" data-theme="paper">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harshal Muthiyan — Firmware &amp; Applied AI</title>
+  <meta
+    name="description"
+    content="Harshal Muthiyan — Computer Engineering M.S. student at Texas A&M University working across embedded firmware, digital hardware, computer vision, and applied AI."
+  />
+
+  <!-- Classic Editorial Typography: Instrument Serif + Inter + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Pre-paint theme loader to prevent flash on load -->
+  <script>
+    (function () {
+      const DEFAULT_THEME = 'paper'; // 'paper' | 'ink' | 'midnight'
+      try {
+        const saved = localStorage.getItem('hm-classic-theme-v2');
+        const valid = ['midnight', 'ink', 'paper'];
+        document.documentElement.setAttribute('data-theme', valid.includes(saved) ? saved : DEFAULT_THEME);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', DEFAULT_THEME);
+      }
+    })();
+  </script>
+
+  <style>
+    /* ==========================================================================
+       1. REFINED CLASSIC PALETTES — MIDNIGHT, INK, PAPER
+       ========================================================================== */
+    :root,
+    :root[data-theme="midnight"] {
+      --bg: #0b0f17;
+      --bg-surface: #111622;
+      --bg-elevated: #151c2b;
+      --bg-diagram: #0d121d;
+      --bg-code: #080b12;
+      --bg-nav: rgba(11, 15, 23, 0.84);
+
+      --text-1: #eef1f6;
+      --text-2: #9ba5b7;
+      --text-3: #667185;
+      --text-on-btn: #0b0f17;
+
+      --accent: #8ab4f8;
+      --accent-soft: rgba(138, 180, 248, 0.11);
+      --accent-line: rgba(138, 180, 248, 0.42);
+
+      --border: rgba(238, 241, 246, 0.085);
+      --border-hover: rgba(238, 241, 246, 0.19);
+      --chip-bg: rgba(238, 241, 246, 0.045);
+
+      --shadow-card: 0 10px 30px -16px rgba(0, 0, 0, 0.55);
+      --shadow-drawer: -20px 0 60px rgba(0, 0, 0, 0.55);
+      --backdrop: rgba(6, 9, 15, 0.68);
+    }
+
+    :root[data-theme="ink"] {
+      --bg: #0f1011;
+      --bg-surface: #161719;
+      --bg-elevated: #1c1d20;
+      --bg-diagram: #121315;
+      --bg-code: #0a0b0c;
+      --bg-nav: rgba(15, 16, 17, 0.85);
+
+      --text-1: #f0eee9;
+      --text-2: #a09d96;
+      --text-3: #6d6a63;
+      --text-on-btn: #0f1011;
+
+      --accent: #d8b48a;
+      --accent-soft: rgba(216, 180, 138, 0.12);
+      --accent-line: rgba(216, 180, 138, 0.45);
+
+      --border: rgba(240, 238, 233, 0.085);
+      --border-hover: rgba(240, 238, 233, 0.2);
+      --chip-bg: rgba(240, 238, 233, 0.045);
+
+      --shadow-card: 0 10px 30px -16px rgba(0, 0, 0, 0.55);
+      --shadow-drawer: -20px 0 60px rgba(0, 0, 0, 0.55);
+      --backdrop: rgba(9, 10, 11, 0.68);
+    }
+
+    :root[data-theme="paper"] {
+      --bg: #f7f5f0;
+      --bg-surface: #ffffff;
+      --bg-elevated: #fbfaf7;
+      --bg-diagram: #f2efe8;
+      --bg-code: #f0ede5;
+      --bg-nav: rgba(247, 245, 240, 0.88);
+
+      --text-1: #181816;
+      --text-2: #57544e;
+      --text-3: #858178;
+      --text-on-btn: #f7f5f0;
+
+      --accent: #7a2e2e;
+      --accent-soft: rgba(122, 46, 46, 0.08);
+      --accent-line: rgba(122, 46, 46, 0.36);
+
+      --border: rgba(24, 24, 22, 0.095);
+      --border-hover: rgba(24, 24, 22, 0.22);
+      --chip-bg: rgba(24, 24, 22, 0.042);
+
+      --shadow-card: 0 12px 30px -18px rgba(24, 24, 22, 0.14);
+      --shadow-drawer: -20px 0 50px rgba(24, 24, 22, 0.14);
+      --backdrop: rgba(24, 24, 22, 0.36);
+    }
+
+    :root {
+      --font-serif: 'Instrument Serif', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-soft: cubic-bezier(0.25, 0.1, 0.25, 1);
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --container: 1020px;
+    }
+
+    /* ==========================================================================
+       2. RESET & BASE STYLES
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      background-color: var(--bg);
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-1);
+      font-family: var(--font-sans);
+      line-height: 1.62;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+      transition: background-color 0.35s var(--ease-soft), color 0.35s var(--ease-soft);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    button {
+      font-family: inherit;
+      color: inherit;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    code, pre { font-family: var(--font-mono); }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 1.5px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+
+    ::selection {
+      background: var(--accent-soft);
+      color: var(--text-1);
+    }
+
+    /* Hairline page-top scroll progress */
+    .scroll-hairline {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      transform-origin: left center;
+      transform: scaleX(0);
+      opacity: 0.8;
+      z-index: 200;
+      pointer-events: none;
+      will-change: transform;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    @media (min-width: 640px) {
+      .container {
+        padding: 0 2rem;
+      }
+    }
+
+    /* ==========================================================================
+       3. CLEAN STICKY HEADER & MOBILE MENU
+       ========================================================================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-nav);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.28s ease, background-color 0.35s ease;
+    }
+
+    .site-header.scrolled {
+      border-bottom-color: var(--border);
+    }
+
+    .nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      white-space: nowrap;
+    }
+
+    .brand-name {
+      font-size: 0.96rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text-1);
+    }
+
+    .brand-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-3);
+      display: none;
+    }
+
+    @media (min-width: 480px) {
+      .brand-tag { display: inline; }
+    }
+
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    @media (min-width: 760px) {
+      .nav-links { display: flex; }
+    }
+
+    .nav-link {
+      font-size: 0.86rem;
+      color: var(--text-2);
+      padding: 0.42rem 0.72rem;
+      border-radius: 8px;
+      transition: color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--text-1);
+      background: var(--chip-bg);
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    /* Minimal 3-Theme Switcher (Midnight / Ink / Paper) */
+    .theme-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--bg-surface);
+      gap: 2px;
+    }
+
+    .theme-opt {
+      padding: 0.26rem 0.62rem;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      color: var(--text-3);
+      transition: color 0.22s ease, background-color 0.22s ease;
+    }
+
+    .theme-opt:hover {
+      color: var(--text-2);
+    }
+
+    .theme-opt.active {
+      background: var(--chip-bg);
+      color: var(--text-1);
+      font-weight: 500;
+    }
+
+    .menu-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      color: var(--text-2);
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .menu-toggle:hover {
+      color: var(--text-1);
+      border-color: var(--border-hover);
+    }
+
+    @media (min-width: 760px) {
+      .menu-toggle { display: none; }
+    }
+
+    .mobile-nav {
+      display: none;
+      border-top: 1px solid var(--border);
+      padding: 0.85rem 1.25rem 1.15rem;
+      background: var(--bg-surface);
+    }
+
+    .mobile-nav.open {
+      display: block;
+    }
+
+    .mobile-nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .mobile-nav-link {
+      padding: 0.6rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      color: var(--text-2);
+    }
+
+    .mobile-nav-link:hover {
+      background: var(--chip-bg);
+      color: var(--text-1);
+    }
+
+    /* ==========================================================================
+       4. HERO — ARCHITECTURAL TWO-COLUMN BALANCE
+       ========================================================================== */
+    .hero {
+      padding: 3.75rem 0 4rem;
+    }
+
+    @media (min-width: 820px) {
+      .hero {
+        padding: 5.5rem 0 5rem;
+      }
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      align-items: end;
+    }
+
+    @media (min-width: 860px) {
+      .hero-grid {
+        grid-template-columns: 1.32fr 0.88fr;
+        gap: 3.25rem;
+      }
+    }
+
+    .hero-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: clamp(2.65rem, 5.5vw, 4.1rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--text-1);
+      margin-bottom: 1.35rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-lead {
+      font-size: 1.01rem;
+      line-height: 1.72;
+      color: var(--text-2);
+      max-width: 540px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-lead strong {
+      color: var(--text-1);
+      font-weight: 500;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.7rem 1.25rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.66rem 1.22rem;
+      border-radius: 999px;
+      background: var(--text-1);
+      color: var(--text-on-btn);
+      font-size: 0.87rem;
+      font-weight: 500;
+      transition: transform 0.28s var(--ease-out), opacity 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.92;
+      transform: translate3d(0, -1.5px, 0);
+    }
+
+    .btn-primary:active {
+      transform: translate3d(0, 0, 0) scale(0.98);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.42rem;
+      padding: 0.64rem 1.12rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--bg-surface);
+      color: var(--text-1);
+      font-size: 0.86rem;
+      font-weight: 500;
+      transition: border-color 0.22s ease, transform 0.28s var(--ease-out);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--border-hover);
+      transform: translate3d(0, -1.5px, 0);
+    }
+
+    .inline-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.28rem;
+      font-size: 0.87rem;
+      color: var(--text-2);
+      padding: 0.35rem 0.1rem;
+      border-bottom: 1px solid transparent;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .inline-link:hover {
+      color: var(--text-1);
+      border-bottom-color: var(--border-hover);
+    }
+
+    /* Right Hero Card — Crisp, Calm Snapshot (Breaks Resume Feel) */
+    .snapshot-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem 1.6rem;
+      box-shadow: var(--shadow-card);
+    }
+
+    .snapshot-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 0.95rem;
+      margin-bottom: 0.95rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .snapshot-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-3);
+    }
+
+    .snapshot-loc {
+      font-size: 0.78rem;
+      color: var(--text-2);
+    }
+
+    .snapshot-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .snapshot-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.12rem;
+    }
+
+    .snapshot-k {
+      font-size: 0.75rem;
+      color: var(--text-3);
+    }
+
+    .snapshot-v {
+      font-size: 0.89rem;
+      color: var(--text-1);
+      font-weight: 500;
+      line-height: 1.45;
+    }
+
+    .snapshot-sub {
+      font-size: 0.81rem;
+      color: var(--text-2);
+      font-weight: 400;
+    }
+
+    /* ==========================================================================
+       5. SECTION RHYTHM & GLIDING FILTER PILLS
+       ========================================================================== */
+    .section {
+      padding: 3.75rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (min-width: 768px) {
+      .section {
+        padding: 4.75rem 0;
+      }
+    }
+
+    .section-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1.25rem;
+      margin-bottom: 2.25rem;
+    }
+
+    .section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.73rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-3);
+      margin-bottom: 0.45rem;
+    }
+
+    .section-heading {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: clamp(1.9rem, 3.6vw, 2.5rem);
+      line-height: 1.12;
+      color: var(--text-1);
+      letter-spacing: -0.015em;
+    }
+
+    .filter-bar {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      padding: 3px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--bg-surface);
+      gap: 2px;
+    }
+
+    .filter-glider {
+      position: absolute;
+      top: 3px;
+      bottom: 3px;
+      left: 0;
+      border-radius: 999px;
+      background: var(--chip-bg);
+      border: 1px solid var(--border);
+      pointer-events: none;
+      transition: transform 0.38s var(--ease-out), width 0.38s var(--ease-out);
+      will-change: transform, width;
+    }
+
+    .filter-btn {
+      position: relative;
+      z-index: 1;
+      padding: 0.34rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      color: var(--text-3);
+      transition: color 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .filter-btn:hover { color: var(--text-2); }
+    .filter-btn.active { color: var(--text-1); font-weight: 500; }
+
+    /* ==========================================================================
+       6. SELECTED WORK — MINIMALIST ARCHITECTURAL GALLERY
+       ========================================================================== */
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.35rem;
+    }
+
+    @media (min-width: 740px) {
+      .work-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition:
+        transform 0.36s var(--ease-out),
+        border-color 0.28s ease,
+        box-shadow 0.36s var(--ease-out);
+      will-change: transform;
+    }
+
+    .project-card:hover {
+      transform: translate3d(0, -3px, 0);
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-card);
+    }
+
+    .project-card.is-hidden {
+      display: none;
+    }
+
+    .project-card.fade-in {
+      animation: cardEnter 0.42s var(--ease-out) both;
+    }
+
+    @keyframes cardEnter {
+      from { opacity: 0; transform: translate3d(0, 10px, 0); }
+      to { opacity: 1; transform: translate3d(0, 0, 0); }
+    }
+
+    /* Featured Flagship Card spans 2 columns on desktop */
+    @media (min-width: 740px) {
+      .project-card.featured {
+        grid-column: span 2;
+        display: grid;
+        grid-template-columns: 1.05fr 1fr;
+        align-items: stretch;
+      }
+    }
+
+    .project-visual {
+      background: var(--bg-diagram);
+      border-bottom: 1px solid var(--border);
+      padding: 1.35rem 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 175px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (min-width: 740px) {
+      .project-card.featured .project-visual {
+        border-bottom: none;
+        border-right: 1px solid var(--border);
+        min-height: 255px;
+        padding: 1.75rem;
+      }
+    }
+
+    .schematic-svg {
+      width: 100%;
+      height: auto;
+      max-width: 380px;
+      display: block;
+      color: var(--text-2);
+      transition: transform 0.55s var(--ease-out);
+    }
+
+    .project-card:hover .schematic-svg {
+      transform: scale(1.022);
+    }
+
+    .project-body {
+      padding: 1.45rem 1.55rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    @media (min-width: 740px) {
+      .project-card.featured .project-body {
+        padding: 1.85rem 2rem;
+        justify-content: center;
+      }
+    }
+
+    .project-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-bottom: 0.55rem;
+    }
+
+    .project-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+    }
+
+    .project-year {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-3);
+    }
+
+    .project-title {
+      font-size: 1.12rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text-1);
+      line-height: 1.32;
+      margin-bottom: 0.55rem;
+    }
+
+    .project-card.featured .project-title {
+      font-size: 1.28rem;
+    }
+
+    .project-desc {
+      font-size: 0.91rem;
+      color: var(--text-2);
+      line-height: 1.62;
+      margin-bottom: 1.15rem;
+      flex: 1;
+    }
+
+    .project-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding-top: 0.95rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .project-tags {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-3);
+    }
+
+    .project-cta {
+      font-size: 0.81rem;
+      font-weight: 500;
+      color: var(--text-1);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      white-space: nowrap;
+      transition: color 0.2s ease;
+    }
+
+    .project-cta .arrow {
+      display: inline-block;
+      transition: transform 0.28s var(--ease-out);
+    }
+
+    .project-card:hover .project-cta {
+      color: var(--accent);
+    }
+
+    .project-card:hover .project-cta .arrow {
+      transform: translate3d(3px, 0, 0);
+    }
+
+    /* ==========================================================================
+       7. EXPERIENCE & EDUCATION — STRUCTURED CARDS (NOT A PLAIN RESUME)
+       ========================================================================== */
+    .exp-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.35rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (min-width: 760px) {
+      .exp-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+    }
+
+    .exp-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.65rem 1.7rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .exp-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.4rem 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .exp-role {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-1);
+      letter-spacing: -0.015em;
+    }
+
+    .exp-date {
+      font-family: var(--font-mono);
+      font-size: 0.73rem;
+      color: var(--text-3);
+      white-space: nowrap;
+    }
+
+    .exp-org {
+      font-size: 0.89rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .exp-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.62rem;
+      margin-bottom: 1.15rem;
+      flex: 1;
+    }
+
+    .exp-points li {
+      position: relative;
+      padding-left: 0.95rem;
+      font-size: 0.885rem;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    .exp-points li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.62em;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--text-3);
+    }
+
+    .exp-stack {
+      padding-top: 0.9rem;
+      border-top: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-3);
+    }
+
+    /* Compact Education Strip */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.35rem;
+    }
+
+    @media (min-width: 760px) {
+      .edu-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+    }
+
+    .edu-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.35rem 1.55rem;
+    }
+
+    .edu-school {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text-1);
+      letter-spacing: -0.01em;
+    }
+
+    .edu-degree {
+      font-size: 0.89rem;
+      color: var(--text-2);
+      margin: 0.2rem 0 0.5rem;
+    }
+
+    .edu-note {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--text-3);
+      line-height: 1.55;
+    }
+
+    /* ==========================================================================
+       8. WRITING / BLOG — CLEAN 3-COLUMN EDITORIAL CARDS
+       ========================================================================== */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.35rem;
+    }
+
+    @media (min-width: 760px) {
+      .blog-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.35rem;
+      }
+    }
+
+    .blog-card {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem 1.5rem 1.35rem;
+      transition:
+        transform 0.35s var(--ease-out),
+        border-color 0.25s ease,
+        box-shadow 0.35s var(--ease-out);
+      will-change: transform;
+    }
+
+    .blog-card:hover {
+      transform: translate3d(0, -3px, 0);
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-card);
+    }
+
+    .blog-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 0.71rem;
+      color: var(--text-3);
+      margin-bottom: 0.85rem;
+    }
+
+    .blog-cat {
+      color: var(--accent);
+    }
+
+    .blog-title {
+      font-size: 1.02rem;
+      font-weight: 600;
+      line-height: 1.38;
+      letter-spacing: -0.015em;
+      color: var(--text-1);
+      margin-bottom: 0.65rem;
+      transition: color 0.2s ease;
+    }
+
+    .blog-card:hover .blog-title {
+      color: var(--accent);
+    }
+
+    .blog-excerpt {
+      font-size: 0.87rem;
+      color: var(--text-2);
+      line-height: 1.6;
+      flex: 1;
+      margin-bottom: 1.1rem;
+    }
+
+    .blog-read {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-2);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.28rem;
+    }
+
+    .blog-card:hover .blog-read {
+      color: var(--text-1);
+    }
+
+    /* ==========================================================================
+       9. TOOLKIT & COURSEWORK — CLEAN 2x2 GRID
+       ========================================================================== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    @media (min-width: 680px) {
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.35rem;
+      }
+    }
+
+    .skill-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.35rem 1.5rem;
+    }
+
+    .skill-label {
+      font-family: var(--font-mono);
+      font-size: 0.73rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 0.55rem;
+    }
+
+    .skill-text {
+      font-size: 0.9rem;
+      color: var(--text-2);
+      line-height: 1.68;
+    }
+
+    /* ==========================================================================
+       10. CLOSING CONTACT CARD & FOOTER
+       ========================================================================== */
+    .contact-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem 1.65rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+      align-items: center;
+    }
+
+    @media (min-width: 760px) {
+      .contact-card {
+        grid-template-columns: 1.3fr 0.9fr;
+        padding: 2.75rem 2.75rem;
+      }
+    }
+
+    .contact-heading {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      line-height: 1.1;
+      color: var(--text-1);
+      margin-bottom: 0.7rem;
+    }
+
+    .contact-heading em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .contact-copy {
+      font-size: 0.95rem;
+      color: var(--text-2);
+      max-width: 470px;
+      line-height: 1.65;
+    }
+
+    .contact-right {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+
+    @media (min-width: 760px) {
+      .contact-right {
+        align-items: flex-end;
+        text-align: right;
+      }
+    }
+
+    .contact-meta-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.15rem;
+      margin-top: 0.25rem;
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0 2.75rem;
+      font-size: 0.8rem;
+      color: var(--text-3);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    /* ==========================================================================
+       11. SILKY SLIDE-OVER CASE STUDY & READING SHEET
+       ========================================================================== */
+    .sheet-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 210;
+      background: var(--backdrop);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.34s var(--ease-out);
+    }
+
+    .sheet-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .sheet {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 220;
+      width: 100%;
+      max-width: 650px;
+      background: var(--bg-surface);
+      border-left: 1px solid var(--border);
+      box-shadow: var(--shadow-drawer);
+      display: flex;
+      flex-direction: column;
+      transform: translate3d(100%, 0, 0);
+      transition: transform 0.44s var(--ease-out);
+      will-change: transform;
+    }
+
+    .sheet.open {
+      transform: translate3d(0, 0, 0);
+    }
+
+    .sheet-progress-track {
+      height: 2px;
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    .sheet-progress-bar {
+      height: 100%;
+      width: 100%;
+      background: var(--accent);
+      transform-origin: left center;
+      transform: scaleX(0);
+      will-change: transform;
+    }
+
+    .sheet-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .sheet-label {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--text-3);
+    }
+
+    .sheet-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .sheet-btn {
+      font-size: 0.8rem;
+      color: var(--text-2);
+      padding: 0.36rem 0.72rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .sheet-btn:hover {
+      color: var(--text-1);
+      border-color: var(--border-hover);
+    }
+
+    .sheet-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+
+    @media (min-width: 640px) {
+      .sheet-body {
+        padding: 2.5rem 2.4rem 3.5rem;
+      }
+    }
+
+    .sheet-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--accent);
+      margin-bottom: 0.55rem;
+    }
+
+    .sheet-title {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: clamp(1.9rem, 4vw, 2.4rem);
+      line-height: 1.12;
+      color: var(--text-1);
+      margin-bottom: 0.85rem;
+    }
+
+    .sheet-lead {
+      font-size: 0.97rem;
+      color: var(--text-2);
+      line-height: 1.7;
+      margin-bottom: 1.75rem;
+      padding-bottom: 1.45rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sheet-h {
+      font-family: var(--font-mono);
+      font-size: 0.73rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-3);
+      margin: 1.75rem 0 0.8rem;
+    }
+
+    .sheet-prose h2 {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: 1.5rem;
+      color: var(--text-1);
+      margin: 1.9rem 0 0.65rem;
+      line-height: 1.22;
+    }
+
+    .sheet-prose p {
+      font-size: 0.95rem;
+      color: var(--text-2);
+      line-height: 1.76;
+      margin-bottom: 1.05rem;
+    }
+
+    .sheet-prose strong {
+      color: var(--text-1);
+      font-weight: 500;
+    }
+
+    .sheet-prose ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.68rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .sheet-prose li {
+      position: relative;
+      padding-left: 1rem;
+      font-size: 0.92rem;
+      color: var(--text-2);
+      line-height: 1.65;
+    }
+
+    .sheet-prose li::before {
+      content: "–";
+      position: absolute;
+      left: 0;
+      color: var(--text-3);
+    }
+
+    .spec-list {
+      border-top: 1px solid var(--border);
+      margin-bottom: 1.25rem;
+    }
+
+    .spec-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.2rem;
+      padding: 0.82rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    @media (min-width: 500px) {
+      .spec-row {
+        grid-template-columns: 145px 1fr;
+        gap: 1rem;
+      }
+    }
+
+    .spec-k { font-size: 0.81rem; color: var(--text-3); }
+    .spec-v { font-size: 0.89rem; color: var(--text-1); line-height: 1.55; }
+
+    .sheet-note {
+      padding: 0.95rem 1.15rem;
+      border-left: 2px solid var(--accent);
+      background: var(--bg-diagram);
+      border-radius: 0 8px 8px 0;
+      font-size: 0.88rem;
+      color: var(--text-2);
+      line-height: 1.65;
+      margin: 1.3rem 0;
+    }
+
+    .sheet-code {
+      padding: 1.05rem 1.15rem;
+      border-radius: 10px;
+      background: var(--bg-code);
+      border: 1px solid var(--border);
+      font-size: 0.77rem;
+      line-height: 1.65;
+      color: var(--text-1);
+      overflow-x: auto;
+      margin: 1.2rem 0;
+    }
+
+    .sheet-table-wrap {
+      overflow-x: auto;
+      margin: 1.2rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sheet-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+    }
+
+    .sheet-table th,
+    .sheet-table td {
+      padding: 0.65rem 0.6rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sheet-table tr:last-child td { border-bottom: none; }
+    .sheet-table th { color: var(--text-3); font-weight: 500; font-size: 0.78rem; }
+    .sheet-table td { color: var(--text-2); }
+
+    .sheet-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 2.25rem;
+      padding-top: 1.35rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .sheet-nav-btn {
+      font-size: 0.84rem;
+      color: var(--text-2);
+      transition: color 0.2s ease;
+    }
+
+    .sheet-nav-btn:hover { color: var(--text-1); }
+
+    /* ==========================================================================
+       12. QUIET TOAST & SUBTLE SCROLL REVEAL
+       ========================================================================== */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      z-index: 300;
+      padding: 0.55rem 1.05rem;
+      border-radius: 999px;
+      background: var(--text-1);
+      color: var(--text-on-btn);
+      font-size: 0.8rem;
+      font-weight: 500;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate3d(-50%, 10px, 0);
+      transition: opacity 0.26s var(--ease-out), transform 0.3s var(--ease-out);
+    }
+
+    .toast.visible {
+      opacity: 1;
+      transform: translate3d(-50%, 0, 0);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translate3d(0, 12px, 0);
+      transition: opacity 0.68s var(--ease-out), transform 0.68s var(--ease-out);
+      will-change: transform, opacity;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .sheet, .sheet-backdrop, .filter-glider, .toast, .project-card, .blog-card { transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="scroll-hairline" class="scroll-hairline" aria-hidden="true"></div>
+
+  <!-- ==================== STICKY HEADER ==================== -->
+  <header id="site-header" class="site-header">
+    <div class="container nav-bar">
+      <a href="#top" class="brand">
+        <span class="brand-name">Harshal Muthiyan</span>
+        <span class="brand-tag">/ TAMU</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="#work" class="nav-link">Work</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#writing" class="nav-link">Writing</a>
+        <a href="#skills" class="nav-link">Toolkit</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-controls">
+        <div class="theme-pill" role="group" aria-label="Color theme">
+          <button type="button" class="theme-opt" data-theme-set="paper">Paper</button>
+          <button type="button" class="theme-opt" data-theme-set="ink">Ink</button>
+          <button type="button" class="theme-opt" data-theme-set="midnight">Midnight</button>
+        </div>
+
+        <button type="button" id="menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <line x1="4" y1="7" x2="20" y2="7"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="17" x2="20" y2="17"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-nav" class="mobile-nav">
+      <div class="mobile-nav-list">
+        <a href="#work" class="mobile-nav-link">Work</a>
+        <a href="#experience" class="mobile-nav-link">Experience &amp; Education</a>
+        <a href="#writing" class="mobile-nav-link">Writing</a>
+        <a href="#skills" class="mobile-nav-link">Toolkit</a>
+        <a href="#contact" class="mobile-nav-link">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ==================== HERO ==================== -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="hero-kicker">Computer Engineering M.S. · Texas A&amp;M University</p>
+
+          <h1 class="hero-title">
+            Building embedded firmware &amp; <em>applied AI systems.</em>
+          </h1>
+
+          <p class="hero-lead">
+            I design systems where hardware meets machine learning—from ESP32 audio processing, Jetson Nano vision pipelines, and breadboard logic to document retrieval with LLMs. Previously interned at <strong>Automaton AI</strong> and <strong>IIT Bombay</strong>.
+          </p>
+
+          <div class="hero-actions">
+            <a href="Harshal_Muthiyan_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn-primary">
+              <span>View Resume</span>
+              <span aria-hidden="true">&nearr;</span>
+            </a>
+
+            <button type="button" class="btn-secondary copy-email-btn" data-email="harshalmuthiyan@gmail.com">
+              Copy Email
+            </button>
+
+            <!-- TODO: Replace href="#github" with your real GitHub URL -->
+            <a href="#https://github.com/HARRYBUILDS-UX" class="inline-link">GitHub &nearr;</a>
+
+            <!-- TODO: Replace href="#linkedin" with your real LinkedIn URL -->
+            <a href="https://www.linkedin.com/in/harshal-muthiyan-348a5724a/" class="inline-link">LinkedIn &nearr;</a>
+          </div>
+        </div>
+
+        <!-- Clean Architectural Profile Card -->
+        <aside class="snapshot-card" aria-label="At a glance">
+          <div class="snapshot-head">
+            <span class="snapshot-label">At a Glance</span>
+            <span class="snapshot-loc">College Station, TX</span>
+          </div>
+
+          <div class="snapshot-list">
+            <div class="snapshot-item">
+              <span class="snapshot-k">Graduate Study</span>
+              <span class="snapshot-v">M.S. Computer Engineering, Texas A&amp;M</span>
+              <span class="snapshot-sub">Expected 2028 · B.E. E&amp;TC 8.76/10 (Distinction)</span>
+            </div>
+
+            <div class="snapshot-item">
+              <span class="snapshot-k">Engineering Focus</span>
+              <span class="snapshot-v">Embedded Systems, Firmware, Edge AI &amp; Applied ML</span>
+            </div>
+
+            <div class="snapshot-item">
+              <span class="snapshot-k">Past Internships</span>
+              <span class="snapshot-v">Automaton AI (Deep Learning) · IIT Bombay (DSP / Vision)</span>
+            </div>
+
+            <div class="snapshot-item">
+              <span class="snapshot-k">Currently Seeking</span>
+              <span class="snapshot-v">Firmware, Embedded Systems &amp; AI/ML Internships</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ==================== SELECTED WORK ==================== -->
+    <section id="work" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="section-eyebrow">Selected Work</p>
+            <h2 class="section-heading">Projects across silicon &amp; software</h2>
+          </div>
+
+          <div class="filter-bar" role="tablist" aria-label="Filter projects">
+            <div id="work-glider" class="filter-glider" aria-hidden="true"></div>
+            <button type="button" class="filter-btn active" data-work-filter="all" role="tab" aria-selected="true">All (5)</button>
+            <button type="button" class="filter-btn" data-work-filter="aiml" role="tab" aria-selected="false">AI &amp; Vision</button>
+            <button type="button" class="filter-btn" data-work-filter="firmware" role="tab" aria-selected="false">Firmware &amp; Hardware</button>
+          </div>
+        </div>
+
+        <div class="work-grid reveal">
+          <!-- 1. FEATURED: IRIS (Spans 2 columns on desktop) -->
+          <button type="button" class="project-card featured" data-cats="aiml firmware" data-open-project="iris">
+            <div class="project-visual" aria-hidden="true">
+              <!-- Minimalist Architectural Diagram: ESP32-S3 -> pgvector -> Llama -->
+              <svg class="schematic-svg" viewBox="0 0 360 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="16" y="42" width="90" height="86" rx="10" stroke="currentColor" stroke-opacity="0.35" stroke-width="1.2"/>
+                <text x="61" y="72" text-anchor="middle" fill="var(--text-1)" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500">ESP32-S3</text>
+                <text x="61" y="90" text-anchor="middle" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="8.2">I2S Mic · Cam</text>
+                <text x="61" y="106" text-anchor="middle" fill="var(--accent)" font-family="JetBrains Mono, monospace" font-size="7.8">16kHz PCM · VAD</text>
+
+                <line x1="106" y1="85" x2="136" y2="85" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="3 3"/>
+                <polygon points="136,81.5 142,85 136,88.5" fill="var(--accent)"/>
+
+                <rect x="142" y="34" width="94" height="102" rx="10" stroke="var(--accent)" stroke-opacity="0.65" stroke-width="1.25" fill="var(--accent-soft)"/>
+                <text x="189" y="64" text-anchor="middle" fill="var(--text-1)" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500">pgvector</text>
+                <text x="189" y="82" text-anchor="middle" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="8.2">LlamaParse PDF</text>
+                <text x="189" y="98" text-anchor="middle" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="8.2">Top-5 Cosine RPC</text>
+                <text x="189" y="116" text-anchor="middle" fill="var(--accent)" font-family="JetBrains Mono, monospace" font-size="8">&lt; 50 ms match</text>
+
+                <line x1="236" y1="85" x2="262" y2="85" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="3 3"/>
+                <polygon points="262,81.5 268,85 262,88.5" fill="var(--accent)"/>
+
+                <rect x="268" y="42" width="76" height="86" rx="10" stroke="currentColor" stroke-opacity="0.35" stroke-width="1.2"/>
+                <text x="306" y="74" text-anchor="middle" fill="var(--text-1)" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="500">Llama</text>
+                <text x="306" y="92" text-anchor="middle" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="8">3.1 8B Text</text>
+                <text x="306" y="107" text-anchor="middle" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="8">3.2 90B Vis</text>
+              </svg>
+            </div>
+
+            <div class="project-body">
+              <div class="project-meta-row">
+                <span class="project-kicker">Featured Capstone · AI &amp; Edge Hardware</span>
+                <span class="project-year">2025–2026</span>
+              </div>
+              <h3 class="project-title">IRIS — Multimodal Context-Aware Edge AI Assistant</h3>
+              <p class="project-desc">
+                A voice-and-camera assistant combining ESP32-S3 audio/vision hardware with a serverless RAG backend. Parses PDFs via LlamaParse, retrieves context in PostgreSQL/pgvector in under 50 ms, and answers through Llama-3.1-8B and Llama-3.2-90B-Vision.
+              </p>
+              <div class="project-footer">
+                <span class="project-tags">ESP32-S3 · pgvector · NVIDIA NIM · Supabase</span>
+                <span class="project-cta">Case study <span class="arrow" aria-hidden="true">&rarr;</span></span>
+              </div>
+            </div>
+          </button>
+
+          <!-- 2. Document Q&A Chatbot & CUDA -->
+          <button type="button" class="project-card" data-cats="aiml" data-open-project="automaton">
+            <div class="project-visual" aria-hidden="true">
+              <svg class="schematic-svg" viewBox="0 0 320 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="22" y="26" width="66" height="78" rx="8" stroke="currentColor" stroke-opacity="0.38" stroke-width="1.2"/>
+                <line x1="34" y1="46" x2="76" y2="46" stroke="currentColor" stroke-opacity="0.4" stroke-width="1.2"/>
+                <line x1="34" y1="58" x2="70" y2="58" stroke="currentColor" stroke-opacity="0.3" stroke-width="1.2"/>
+                <line x1="34" y1="70" x2="76" y2="70" stroke="currentColor" stroke-opacity="0.3" stroke-width="1.2"/>
+                <text x="55" y="92" text-anchor="middle" fill="var(--accent)" font-family="JetBrains Mono, monospace" font-size="8">PDF · OCR</text>
+
+                <line x1="88" y1="65" x2="118" y2="65" stroke="currentColor" stroke-opacity="0.35" stroke-width="1.2"/>
+
+                <rect x="118" y="34" width="84" height="62" rx="8" stroke="var(--accent)" stroke-opacity="0.6" fill="var(--accent-soft)" stroke-width="1.2"/>
+                <text x="160" y="61" text-anchor="middle" fill="var(--text-1)" font-family="JetBrains Mono, monospace" font-size="9">Embeddings</text>
+                <text x="160" y="77" text-anchor="middle" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="7.8">MongoDB · Groq</text>
+
+                <line x1="202" y1="65" x2="230" y2="65" stroke="currentColor" stroke-opacity="0.35" stroke-width="1.2"/>
+
+                <rect x="230" y="34" width="68" height="62" rx="8" stroke="currentColor" stroke-opacity="0.38" stroke-width="1.2"/>
+                <text x="264" y="61" text-anchor="middle" fill="var(--text-1)" font-family="JetBrains Mono, monospace" font-size="9">Docker</text>
+                <text x="264" y="77" text-anchor="middle" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="7.8">Streamlit</text>
+              </svg>
+            </div>
+
+            <div class="project-body">
+              <div class="project-meta-row">
+                <span class="project-kicker">Applied NLP &amp; GPU Computing</span>
+                <span class="project-year">2025</span>
+              </div>
+              <h3 class="project-title">Document Retrieval Chatbot &amp; CUDA Modules</h3>
+              <p class="project-desc">
+                Dockerized PDF and DOCX assistant with Tesseract OCR fallback for scanned files, Sentence Transformers retrieval, and parallel Groq API retries—alongside CUDA/OpenCV training modules built at Automaton AI.
+              </p>
+              <div class="project-footer">
+                <span class="project-tags">Python · CUDA · MongoDB · Docker</span>
+                <span class="project-cta">Details <span class="arrow" aria-hidden="true">&rarr;</span></span>
+              </div>
+            </div>
+          </button>
+
+          <!-- 3. YOLOv8 Face-Mask Detection -->
+          <button type="button" class="project-card" data-cats="aiml firmware" data-open-project="yolov8">
+            <div class="project-visual" aria-hidden="true">
+              <svg class="schematic-svg" viewBox="0 0 320 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="28" y="18" width="154" height="94" rx="8" stroke="currentColor" stroke-opacity="0.3" stroke-width="1.2"/>
+                <!-- Subtle bounding box with corner ticks -->
+                <rect x="66" y="32" width="76" height="66" rx="4" stroke="var(--accent)" stroke-width="1.4" fill="var(--accent-soft)"/>
+                <text x="72" y="45" fill="var(--accent)" font-family="JetBrains Mono, monospace" font-size="8">with_mask 0.94</text>
+                <text x="104" y="88" text-anchor="middle" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="7.5">480 × 640 frame</text>
+
+                <line x1="182" y1="65" x2="210" y2="65" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="3 3"/>
+                <rect x="210" y="32" width="84" height="66" rx="8" stroke="currentColor" stroke-opacity="0.38" stroke-width="1.2"/>
+                <text x="252" y="56" text-anchor="middle" fill="var(--text-1)" font-family="JetBrains Mono, monospace" font-size="9">FastAPI</text>
+                <text x="252" y="71" text-anchor="middle" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="7.8">POST /detect/</text>
+                <text x="252" y="85" text-anchor="middle" fill="var(--accent)" font-family="JetBrains Mono, monospace" font-size="7.6">7.1–15.9 ms</text>
+              </svg>
+            </div>
+
+            <div class="project-body">
+              <div class="project-meta-row">
+                <span class="project-kicker">Computer Vision · IIT Bombay</span>
+                <span class="project-year">2024–2025</span>
+              </div>
+              <h3 class="project-title">YOLOv8 Hybrid Edge-Cloud Mask Detection</h3>
+              <p class="project-desc">
+                Trained a 3-class detector on ~3,000 annotated images (92% binary, &gt;90% multi-class reported) and linked Jetson Nano capture/display to a FastAPI <code>/detect/</code> service returning JSON boxes.
+              </p>
+              <div class="project-footer">
+                <span class="project-tags">YOLOv8 · OpenCV · FastAPI · Jetson Nano</span>
+                <span class="project-cta">Details <span class="arrow" aria-hidden="true">&rarr;</span></span>
+              </div>
+            </div>
+          </button>
+
+          <!-- 4. ESP32 LyraT Mini 3-Band EQ -->
+          <button type="button" class="project-card" data-cats="firmware" data-open-project="lyrat">
+            <div class="project-visual" aria-hidden="true">
+              <svg class="schematic-svg" viewBox="0 0 320 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <line x1="28" y1="96" x2="292" y2="96" stroke="currentColor" stroke-opacity="0.25" stroke-width="1"/>
+                <line x1="116" y1="22" x2="116" y2="96" stroke="currentColor" stroke-opacity="0.16" stroke-dasharray="3 3"/>
+                <line x1="204" y1="22" x2="204" y2="96" stroke="currentColor" stroke-opacity="0.16" stroke-dasharray="3 3"/>
+                <!-- Smooth 3-band EQ response curve -->
+                <path d="M 28 72 C 58 72, 66 36, 94 36 C 122 36, 134 62, 160 62 C 186 62, 200 42, 232 42 C 258 42, 272 68, 292 68" stroke="var(--accent)" stroke-width="1.8" fill="none"/>
+                <circle cx="92" cy="36" r="4" fill="var(--bg-diagram)" stroke="var(--accent)" stroke-width="1.6"/>
+                <circle cx="160" cy="62" r="4" fill="var(--bg-diagram)" stroke="var(--accent)" stroke-width="1.6"/>
+                <circle cx="232" cy="42" r="4" fill="var(--bg-diagram)" stroke="var(--accent)" stroke-width="1.6"/>
+                <text x="72" y="112" text-anchor="middle" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="7.8">BASS ≤500Hz</text>
+                <text x="160" y="112" text-anchor="middle" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="7.8">MID 0.5–2kHz</text>
+                <text x="248" y="112" text-anchor="middle" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="7.8">TREBLE &gt;2kHz</text>
+              </svg>
+            </div>
+
+            <div class="project-body">
+              <div class="project-meta-row">
+                <span class="project-kicker">Embedded Audio &amp; DSP</span>
+                <span class="project-year">ESP32 LyraT</span>
+              </div>
+              <h3 class="project-title">ESP32 LyraT Mini 3-Band Audio Equalizer</h3>
+              <p class="project-desc">
+                Real-time 512-point FFT/IFFT stereo WAV equalizer validated in MATLAB, mapping 12-bit potentiometer ADCs to 0.5&times;–2.5&times; gain over 44.1 kHz I2S audio with an OLED display and 162-net EasyEDA PCB audit.
+              </p>
+              <div class="project-footer">
+                <span class="project-tags">C/C++ · I2S · 512-pt FFT · MATLAB · EasyEDA</span>
+                <span class="project-cta">Details <span class="arrow" aria-hidden="true">&rarr;</span></span>
+              </div>
+            </div>
+          </button>
+
+          <!-- 5. 8-Bit Breadboard Computer Modules -->
+          <button type="button" class="project-card" data-cats="firmware" data-open-project="breadboard8">
+            <div class="project-visual" aria-hidden="true">
+              <svg class="schematic-svg" viewBox="0 0 320 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="20" y="24" width="66" height="44" rx="7" stroke="currentColor" stroke-opacity="0.38" stroke-width="1.2"/>
+                <text x="53" y="45" text-anchor="middle" fill="var(--text-1)" font-family="JetBrains Mono, monospace" font-size="8.5">CLOCK</text>
+                <text x="53" y="58" text-anchor="middle" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="7.2">TTL Pulse</text>
+
+                <rect x="112" y="24" width="84" height="44" rx="7" stroke="currentColor" stroke-opacity="0.38" stroke-width="1.2"/>
+                <text x="154" y="45" text-anchor="middle" fill="var(--text-1)" font-family="JetBrains Mono, monospace" font-size="8.5">REGISTERS</text>
+                <text x="154" y="58" text-anchor="middle" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="7.2">74LS173 ×2</text>
+
+                <rect x="220" y="24" width="80" height="44" rx="7" stroke="var(--accent)" stroke-opacity="0.65" fill="var(--accent-soft)" stroke-width="1.2"/>
+                <text x="260" y="45" text-anchor="middle" fill="var(--text-1)" font-family="JetBrains Mono, monospace" font-size="8.5">8-BIT ALU</text>
+                <text x="260" y="58" text-anchor="middle" fill="var(--accent)" font-family="JetBrains Mono, monospace" font-size="7.2">74LS283 + XOR</text>
+
+                <!-- Shared 8-bit bus bar -->
+                <line x1="154" y1="68" x2="154" y2="90" stroke="currentColor" stroke-opacity="0.35" stroke-width="1.2"/>
+                <line x1="260" y1="68" x2="260" y2="90" stroke="var(--accent)" stroke-opacity="0.7" stroke-width="1.2"/>
+                <rect x="20" y="90" width="280" height="20" rx="5" stroke="currentColor" stroke-opacity="0.35" stroke-width="1.1"/>
+                <text x="160" y="103" text-anchor="middle" fill="currentColor" font-family="JetBrains Mono, monospace" font-size="7.8">8-BIT BUS · 74LS245 TRANSCEIVER · LIVE LEDs</text>
+              </svg>
+            </div>
+
+            <div class="project-body">
+              <div class="project-meta-row">
+                <span class="project-kicker">Digital Logic &amp; Architecture</span>
+                <span class="project-year">Discrete TTL</span>
+              </div>
+              <h3 class="project-title">8-Bit Breadboard Computer Modules</h3>
+              <p class="project-desc">
+                Built the clock, 8-bit registers, and arithmetic logic unit on breadboards from discrete 74LS TTL chips (74LS173, cascaded 74LS283 adders, 74LS86 XOR subtraction, 74LS245 bus transceiver) with live bus LEDs.
+              </p>
+              <div class="project-footer">
+                <span class="project-tags">74LS173 · 74LS283 · 74LS86 · 74LS245</span>
+                <span class="project-cta">Details <span class="arrow" aria-hidden="true">&rarr;</span></span>
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== EXPERIENCE & EDUCATION ==================== -->
+    <section id="experience" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="section-eyebrow">Background</p>
+            <h2 class="section-heading">Experience &amp; Education</h2>
+          </div>
+        </div>
+
+        <div class="exp-grid reveal">
+          <!-- Automaton AI -->
+          <article class="exp-card">
+            <div class="exp-top">
+              <h3 class="exp-role">Deep Learning Intern</h3>
+              <span class="exp-date">Jan 2025 – Jun 2025</span>
+            </div>
+            <p class="exp-org">Automaton AI Infosystem</p>
+            <ul class="exp-points">
+              <li>Solved CUDA programming challenges, including OpenCV-based image-processing problems, producing solutions later adopted as instructional examples for CUDA training.</li>
+              <li>Built a PDF and DOCX retrieval chatbot using PyMuPDF and python-docx with a Tesseract OCR fallback for scanned PDFs and MongoDB document storage.</li>
+              <li>Implemented Sentence Transformers embeddings, token-aware chunking, and Groq API Q&amp;A/summarization with parallel requests and exponential-backoff retries; shipped a Dockerized Streamlit UI.</li>
+            </ul>
+            <p class="exp-stack">CUDA · OpenCV · NLP · MongoDB · Tesseract OCR · Streamlit · Docker</p>
+          </article>
+
+          <!-- IIT Bombay -->
+          <article class="exp-card">
+            <div class="exp-top">
+              <h3 class="exp-role">DSP Internship</h3>
+              <span class="exp-date">Sep 2024 – Mar 2025</span>
+            </div>
+            <p class="exp-org">IIT Bombay · YOLOv8 Face-Mask Detection</p>
+            <ul class="exp-points">
+              <li>Prepared and annotated an ~3,000-image dataset across 3 mask classes (with mask, without mask, incorrectly worn); the project report records 92% binary and &gt;90% multi-class accuracy.</li>
+              <li>Applied flips, rotations, and brightness/contrast augmentation; built a FastAPI <code>/detect/</code> endpoint returning class labels, confidence scores (0.50 cutoff), and bounding boxes as JSON.</li>
+              <li>Connected Jetson Nano camera capture and display to Colab-hosted inference over HTTP (sample logs show 7.1–15.9 ms per 480&times;640 image, excluding capture and network latency).</li>
+            </ul>
+            <p class="exp-stack">Python · YOLOv8 · OpenCV · FastAPI · Jetson Nano · Google Colab</p>
+          </article>
+        </div>
+
+        <!-- Education Cards -->
+        <div class="edu-grid reveal">
+          <article class="edu-card">
+            <div class="exp-top">
+              <h3 class="edu-school">Texas A&amp;M University</h3>
+              <span class="exp-date">2026 – 2028 (expected)</span>
+            </div>
+            <p class="edu-degree">M.S. in Computer Engineering · College Station, TX</p>
+            <p class="edu-note">Focus: Embedded Systems, Firmware, Edge AI, and Applied Machine Learning.</p>
+          </article>
+
+          <article class="edu-card">
+            <div class="exp-top">
+              <h3 class="edu-school">PVG's COET · Savitribai Phule Pune University</h3>
+              <span class="exp-date">2022 – 2026</span>
+            </div>
+            <p class="edu-degree">B.E. in Electronics &amp; Telecommunication Engineering · Pune, India</p>
+            <p class="edu-note">CGPA: 8.76 / 10 · First Class with Distinction · AI &amp; ML Honors (20 credits completed)</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== WRITING / BLOG ==================== -->
+    <section id="writing" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="section-eyebrow">Writing</p>
+            <h2 class="section-heading">Engineering notes &amp; breakdowns</h2>
+          </div>
+
+          <div class="filter-bar" role="tablist" aria-label="Filter blog posts">
+            <div id="blog-glider" class="filter-glider" aria-hidden="true"></div>
+            <button type="button" class="filter-btn active" data-blog-filter="all" role="tab" aria-selected="true">All</button>
+            <button type="button" class="filter-btn" data-blog-filter="Firmware" role="tab" aria-selected="false">Firmware</button>
+            <button type="button" class="filter-btn" data-blog-filter="AI / ML" role="tab" aria-selected="false">AI / ML</button>
+          </div>
+        </div>
+
+        <div id="blog-grid" class="blog-grid reveal"></div>
+      </div>
+    </section>
+
+    <!-- ==================== TOOLKIT & COURSEWORK ==================== -->
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="section-eyebrow">Toolkit</p>
+            <h2 class="section-heading">Technical skills &amp; coursework</h2>
+          </div>
+        </div>
+
+        <div class="skills-grid reveal">
+          <div class="skill-card">
+            <h3 class="skill-label">AI, Vision &amp; Retrieval</h3>
+            <p class="skill-text">YOLOv8, OpenCV, Deep Learning, CUDA, RAG, PostgreSQL/pgvector, LlamaParse, NVIDIA NIM, Llama-3.1 / 3.2, Sentence Transformers, Tesseract OCR</p>
+          </div>
+
+          <div class="skill-card">
+            <h3 class="skill-label">Embedded &amp; Hardware</h3>
+            <p class="skill-text">ESP32 / ESP32-S3, ESP32-CAM, Jetson Nano, I2S Audio, FFT / DSP, 74LS TTL Digital Logic, Vivado, EasyEDA, ChampSim, MATLAB</p>
+          </div>
+
+          <div class="skill-card">
+            <h3 class="skill-label">Languages &amp; Backend</h3>
+            <p class="skill-text">Python, C/C++, SQL, Verilog, FastAPI, Streamlit, Docker, Supabase Edge Functions (Deno/TypeScript), PostgreSQL, MongoDB, REST APIs, WebSockets, Git</p>
+          </div>
+
+          <div class="skill-card">
+            <h3 class="skill-label">Relevant Coursework</h3>
+            <p class="skill-text">Microcontrollers, Embedded Systems &amp; RTOS, Embedded System Design, Digital Signal Processing, Deep Learning, VLSI Design &amp; Technology, Computer Architecture, Data Structures, Cloud Computing</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CONTACT ==================== -->
+    <section id="contact" class="section">
+      <div class="container reveal">
+        <div class="contact-card">
+          <div>
+            <h2 class="contact-heading">Let's build something <em>useful.</em></h2>
+            <p class="contact-copy">
+              I'm targeting Embedded Systems, Firmware, Edge AI, and AI/ML internships. Whether you're hiring or want to compare notes on hardware and machine learning, feel free to reach out.
+            </p>
+          </div>
+
+          <div class="contact-right">
+            <button type="button" class="btn-primary copy-email-btn" data-email="harshalmuthiyan@gmail.com">
+              Copy harshalmuthiyan@gmail.com
+            </button>
+
+            <div class="contact-meta-links">
+              <a href="mailto:harshalmuthiyan@gmail.com" class="inline-link">Email &nearr;</a>
+              <a href="tel:+19793447488" class="inline-link">+1 979-344-7488</a>
+              <a href="Harshal_Muthiyan_Resume.pdf" target="_blank" rel="noopener noreferrer" class="inline-link">Resume &nearr;</a>
+              <!-- TODO: Replace with real profile URLs -->
+              <a href="https://github.com/HARRYBUILDS-UX" class="inline-link">GitHub &nearr;</a>
+              <a href="https://www.linkedin.com/in/harshal-muthiyan-348a5724a/" class="inline-link">LinkedIn &nearr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>Harshal Muthiyan · M.S. Computer Engineering, Texas A&amp;M University</span>
+      <a href="#top" class="inline-link" style="font-size:0.8rem; padding:0;">Back to top &uarr;</a>
+    </div>
+  </footer>
+
+  <!-- ==================== SLIDE-OVER CASE STUDY & READING SHEET ==================== -->
+  <div id="sheet-backdrop" class="sheet-backdrop" aria-hidden="true"></div>
+
+  <aside id="sheet" class="sheet" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Detail reader">
+    <div class="sheet-progress-track">
+      <div id="sheet-progress" class="sheet-progress-bar"></div>
+    </div>
+    <div class="sheet-header">
+      <span id="sheet-label" class="sheet-label">Project Case Study</span>
+      <div class="sheet-actions">
+        <button type="button" id="sheet-share-btn" class="sheet-btn" style="display:none;">Copy link</button>
+        <button type="button" id="sheet-close-btn" class="sheet-btn" aria-label="Close panel">Close</button>
+      </div>
+    </div>
+    <div id="sheet-body" class="sheet-body"></div>
+  </aside>
+
+  <!-- Quiet Toast -->
+  <div id="toast" class="toast" role="status" aria-live="polite">Copied</div>
+
+  <!-- ==================== SELF-CONTAINED VANILLA JS ==================== -->
+  <script>
+    /* ==========================================================================
+       WRITING / BLOG POSTS — ADD NEW POSTS HERE (ZERO BUILD STEP)
+       Direct link format: https://yourusername.github.io/#post/your-slug
+       ========================================================================== */
+    const BLOG_POSTS = [
+      {
+        slug: 'esp32-fft-equalizer',
+        title: 'Building a 3-Band Audio Equalizer on ESP32 (and Auditing 162 PCB Nets)',
+        category: 'Firmware',
+        date: 'Starter Post · Edit in BLOG_POSTS',
+        readTime: '6 min read',
+        excerpt: 'Validating a 512-point FFT in MATLAB, mapping hardware potentiometers to live stereo I2S audio, and catching a ground & OLED pull-up mismatch in EasyEDA.',
+        content: `
+          <p>Real-time audio on a microcontroller leaves very little room to hide. For my 3-band equalizer on the <strong>ESP32 LyraT Mini v1.2</strong>, the goal was clean stereo WAV playback from an SD card with physical Bass, Mid, and Treble knobs and a live 0.96-inch OLED readout.</p>
+
+          <h2>Validating the math in MATLAB first</h2>
+          <p>At a 44.1 kHz sample rate with a 512-point FFT, each frequency bin spans roughly 86 Hz. Prototyping the FFT/IFFT path and gain mapping in MATLAB first let me verify clean band transitions before moving to embedded C/C++:</p>
+
+          <div class="sheet-table-wrap">
+            <table class="sheet-table">
+              <thead>
+                <tr><th>Band</th><th>Frequency Range</th><th>Gain Mapping</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Bass</td><td>&le; 500 Hz</td><td>0.5&times; – 2.5&times;</td></tr>
+                <tr><td>Mid</td><td>500 – 2,000 Hz</td><td>0.5&times; – 2.5&times;</td></tr>
+                <tr><td>Treble</td><td>&gt; 2,000 Hz</td><td>0.5&times; – 2.5&times;</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>Mapping physical knobs to gain</h2>
+          <p>Three potentiometers feed 12-bit ADC readings (<code>0–4095</code>), scaling smoothly onto a <code>0.5×–2.5×</code> multiplier while decoupling OLED refreshes to ~200 ms so 16-bit stereo I2S playback stays glitch-free:</p>
+
+          <pre class="sheet-code">static inline float adc_to_gain(uint16_t raw_adc) {
+    return 0.5f + ((float)raw_adc / 4095.0f) * 2.0f;
+}</pre>
+
+          <div class="sheet-note">
+            <strong>PCB audit takeaway:</strong> Reviewing all 162 EasyEDA nets caught a mismatch involving the mid-band ground reference and an OLED SDA pull-up correction—saving hours of bench debugging.
+          </div>
+        `
+      },
+      {
+        slug: 'iris-pgvector-rag',
+        title: 'Sub-50ms Document Retrieval for Edge Assistants with pgvector & Llama',
+        category: 'AI / ML',
+        date: 'Starter Post · Edit in BLOG_POSTS',
+        readTime: '7 min read',
+        excerpt: 'Structuring PDF ingestion with LlamaParse, 1,500-character paragraph chunking, batched NVIDIA embeddings, and dual text/vision routing for IRIS.',
+        content: `
+          <p>When someone speaks to a hardware assistant, slow retrieval breaks the experience immediately. For our capstone project <strong>IRIS</strong>, I worked on the RAG backend and the ESP32-S3 audio/camera hardware integration.</p>
+
+          <h2>Ingestion quality drives retrieval quality</h2>
+          <p>Uploaded PDFs land in Supabase Storage and convert to clean Markdown via <strong>LlamaParse</strong>. Chunking on paragraph boundaries (~1,500 characters) and filtering fragments &le;10 characters kept semantic context intact. Embeddings are generated via NVIDIA NIM in batches of up to 50 chunks and indexed in PostgreSQL with <code>pgvector</code>.</p>
+
+          <pre class="sheet-code">const BATCH_SIZE = 50;
+const chunks = chunkMarkdownParagraphs(markdown, 1500)
+  .filter((c) =&gt; c.trim().length &gt; 10);
+
+for (let i = 0; i &lt; chunks.length; i += BATCH_SIZE) {
+  const slice = chunks.slice(i, i + BATCH_SIZE);
+  const embeddings = await embedWithNvidia(slice);
+  await storeChunks(documentId, slice, embeddings);
+}</pre>
+
+          <h2>Text and vision query routing</h2>
+          <p>Queries call the PostgreSQL <code>match_document_chunks</code> RPC for up to 5 cosine-similarity chunks (reported under 50 ms). Text queries route to <strong>Llama-3.1-8B</strong>, while camera-assisted questions route to <strong>Llama-3.2-90B-Vision</strong>.</p>
+
+          <div class="sheet-note">
+            On the ESP32-S3 hardware path, audio runs at 16 kHz / 16-bit mono PCM with RMS-based VAD (1.2 s silence interval) and 512-byte WebSocket packets every 16 ms.
+          </div>
+        `
+      },
+      {
+        slug: 'yolov8-jetson-fastapi',
+        title: 'Splitting Vision Workloads Between Jetson Nano and FastAPI',
+        category: 'AI / ML',
+        date: 'Starter Post · Edit in BLOG_POSTS',
+        readTime: '5 min read',
+        excerpt: 'Lessons from my IIT Bombay internship: curating a 3-class mask dataset, designing a clean /detect/ endpoint, and separating model time from network latency.',
+        content: `
+          <p>Deploying computer vision on compact edge hardware often requires trading off local compute against model accuracy. During my DSP internship mentored at <strong>IIT Bombay</strong>, we paired a Jetson Nano for camera capture and display with a remote FastAPI YOLOv8 service over HTTP.</p>
+
+          <h2>Dataset curation &amp; clean API contracts</h2>
+          <p>We prepared and annotated ~3,000 images across three classes—<code>with_mask</code>, <code>without_mask</code>, and <code>incorrectly_worn</code>—using flips, rotations, and brightness/contrast augmentation. The project report records 92% binary accuracy and &gt;90% multi-class accuracy.</p>
+
+          <pre class="sheet-code">@app.post("/detect/")
+async def detect(file: UploadFile = File(...)):
+    frame = decode_image(await file.read())
+    boxes = [b for b in model(frame)[0].boxes if float(b.conf) &gt;= 0.50]
+    return {"detections": format_boxes(boxes)}</pre>
+
+          <div class="sheet-note">
+            <strong>Benchmarking discipline:</strong> Sample remote server logs show 7.1–15.9 ms YOLOv8 inference per 480&times;640 image, excluding capture and HTTP latency. Logging each stage independently avoids mistaking network overhead for model slowness.
+          </div>
+        `
+      }
+    ];
+
+    /* ==========================================================================
+       PROJECT CASE STUDY SHEETS (VERIFIED RESUME & DOSSIER DETAILS)
+       ========================================================================== */
+    const PROJECTS = {
+      iris: {
+        kicker: 'Capstone Project · 2025–2026',
+        title: 'IRIS — Multimodal Context-Aware Edge AI Assistant',
+        lead: 'A multimodal assistant uniting ESP32-S3 audio and camera hardware with a serverless RAG backend, answering spoken and visual queries grounded in uploaded PDFs.',
+        highlights: [
+          'Built PDF ingestion with Supabase Storage and LlamaParse; chunked Markdown paragraphs (~1,500 characters), filtered chunks ≤10 characters, and generated NVIDIA embeddings in batches of up to 50 for PostgreSQL/pgvector.',
+          'Implemented query embeddings and cosine-distance retrieval via the match_document_chunks RPC (returning up to 5 chunks; reported matching under 50 ms) for Llama-3.1-8B text answers and Llama-3.2-90B-Vision image queries.',
+          'Integrated ESP32-S3 audio/vision hardware (INMP441 I2S mic, MAX98357A amplifier, speaker, camera) running 16 kHz / 16-bit mono PCM, RMS-based VAD with a 1.2 s silence interval, and 512-byte WebSocket packets every 16 ms.'
+        ],
+        specs: [
+          { k: 'My Focus', v: 'RAG ingestion/retrieval backend & ESP32-S3 hardware integration' },
+          { k: 'Vector Retrieval', v: 'PostgreSQL / pgvector match_document_chunks RPC (<50 ms reported)' },
+          { k: 'Models', v: 'NVIDIA embeddings, Llama-3.1-8B (text), Llama-3.2-90B-Vision (image)' },
+          { k: 'Edge Hardware', v: 'ESP32-S3, INMP441 I2S mic, MAX98357A amp, speaker, camera' },
+          { k: 'Audio Protocol', v: '16 kHz / 16-bit mono PCM · RMS VAD (1.2 s) · 512 B WS / 16 ms' },
+          { k: 'Cloud Stack', v: 'Supabase Storage, Edge Functions (Deno/TypeScript), LlamaParse' }
+        ]
+      },
+      automaton: {
+        kicker: 'Deep Learning Internship · Automaton AI Infosystem (Jan–Jun 2025)',
+        title: 'Document Retrieval Chatbot & CUDA Modules',
+        lead: 'A containerized NLP document-retrieval assistant supporting PDF, DOCX, and scanned files—paired with CUDA and OpenCV solutions used as instructional material.',
+        highlights: [
+          'Solved CUDA programming challenges including OpenCV-based image-processing problems, creating reference solutions adopted for CUDA training.',
+          'Built PDF and DOCX extraction with PyMuPDF and python-docx plus a Tesseract OCR fallback for scanned PDFs, storing extracted document content in MongoDB.',
+          'Implemented embedding-based retrieval (Sentence Transformers, token-aware chunking) with LLM Q&A and summarization via the Groq API using parallel requests and exponential-backoff retries.',
+          'Built the user interface in Streamlit and containerized the entire workflow with Docker.'
+        ],
+        specs: [
+          { k: 'Extraction & DB', v: 'PyMuPDF, python-docx, Tesseract OCR fallback, MongoDB' },
+          { k: 'Retrieval & LLM', v: 'Sentence Transformers, token-aware chunking, Groq API' },
+          { k: 'Resilience', v: 'Parallel API requests with exponential-backoff retries' },
+          { k: 'Packaging', v: 'Streamlit frontend containerized with Docker' },
+          { k: 'GPU Computing', v: 'CUDA programming & OpenCV image-processing training examples' }
+        ]
+      },
+      yolov8: {
+        kicker: 'DSP Internship · IIT Bombay (Sep 2024 – Mar 2025)',
+        title: 'YOLOv8 Hybrid Edge-Cloud Mask Detection',
+        lead: 'A 3-class computer vision pipeline connecting Jetson Nano capture and display to a remote FastAPI YOLOv8 inference service over HTTP.',
+        highlights: [
+          'Prepared and annotated an ~3,000-image dataset for 3 mask-condition classes (with mask, without mask, incorrectly worn); the project report records 92% binary accuracy and >90% multi-class accuracy.',
+          'Applied dataset augmentation (flips, brightness/contrast shifts, rotations) and built a FastAPI /detect/ endpoint returning class labels, confidence scores (0.50 detection threshold), and bounding boxes as JSON.',
+          'Connected Jetson Nano capture/display to Google Colab-hosted inference over HTTP.'
+        ],
+        specs: [
+          { k: 'Dataset', v: '~3,000 annotated images across 3 classes with augmentation' },
+          { k: 'Reported Accuracy', v: '92% binary accuracy and >90% multi-class accuracy (project report)' },
+          { k: 'Server Inference', v: '7.1–15.9 ms per 480×640 image in sample logs (excl. capture & network)' },
+          { k: 'API Contract', v: 'FastAPI POST /detect/ returning labels, confidences (≥0.50), bboxes' },
+          { k: 'Stack', v: 'Python, YOLOv8, OpenCV, FastAPI, Jetson Nano, Google Colab' }
+        ]
+      },
+      lyrat: {
+        kicker: 'Embedded Audio & DSP',
+        title: 'ESP32 LyraT Mini 3-Band Audio Equalizer',
+        lead: 'A real-time stereo FFT equalizer on the ESP32 LyraT Mini v1.2 that processes SD-card WAV audio using physical potentiometers and displays live bands on an OLED.',
+        highlights: [
+          'Implemented FFT/IFFT-based 3-band EQ for SD-card stereo WAV playback: Bass ≤500 Hz, Mid 500–2,000 Hz, Treble >2,000 Hz; mapped 12-bit potentiometer ADC values (0–4095) to 0.5×–2.5× gain.',
+          'Validated a 512-point FFT and gain mapping in MATLAB; outputs 44.1 kHz, 16-bit stereo I2S audio and refreshes a 0.96-inch OLED roughly every 200 ms.',
+          'Reviewed 162 EasyEDA PCB nets and resolved a reported mismatch involving mid-band ground and OLED SDA pull-up corrections.'
+        ],
+        specs: [
+          { k: 'Platform', v: 'ESP32 LyraT Mini v1.2, SD card, 3 potentiometers, 0.96" OLED' },
+          { k: 'DSP Core', v: '512-point FFT/IFFT validated in MATLAB (0.5×–2.5× band gain)' },
+          { k: 'Audio Output', v: '44.1 kHz, 16-bit stereo I2S · ~200 ms OLED refresh' },
+          { k: 'PCB Verification', v: '162 EasyEDA nets audited; mid-band ground & OLED SDA fixed' }
+        ]
+      },
+      breadboard8: {
+        kicker: 'Digital Logic & Computer Architecture',
+        title: '8-Bit Breadboard Computer Modules',
+        lead: 'Hand-wired clock, registers, and arithmetic logic unit built on breadboards from discrete 74LS-series TTL integrated circuits, following Ben Eater’s architecture.',
+        highlights: [
+          'Built the clock, register, and ALU modules on breadboards using discrete TTL logic ICs.',
+          'Implemented 8-bit registers with 74LS173 chips and an 8-bit adder from two cascaded 74LS283 4-bit adders paired with 74LS86 XOR gates for subtraction.',
+          'Connected modules through a 74LS245 bus transceiver with status LEDs displaying live bus and register contents.'
+        ],
+        specs: [
+          { k: 'Modules Built', v: 'Clock, Registers, and ALU on breadboards' },
+          { k: 'Register & Bus ICs', v: '74LS173 registers · 74LS245 octal bus transceiver' },
+          { k: 'ALU ICs', v: 'Two 74LS283 4-bit adders + 74LS86 XOR gates for subtraction' },
+          { k: 'Verification', v: 'Live LED indicators showing shared bus and register binary state' }
+        ]
+      }
+    };
+
+    /* ==========================================================================
+       MAIN INTERACTION CONTROLLER
+       ========================================================================== */
+    (function () {
+      const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* ------------------------------------------------------------------------
+         1. THEME SWITCHER (Midnight | Ink | Paper)
+         ------------------------------------------------------------------------ */
+      const themeBtns = document.querySelectorAll('[data-theme-set]');
+
+      function syncThemeUI(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        themeBtns.forEach((btn) => {
+          btn.classList.toggle('active', btn.getAttribute('data-theme-set') === theme);
+        });
+      }
+
+      syncThemeUI(document.documentElement.getAttribute('data-theme') || 'paper');
+
+      themeBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const next = btn.getAttribute('data-theme-set');
+          syncThemeUI(next);
+          try { localStorage.setItem('hm-classic-theme-v2', next); } catch (e) {}
+        });
+      });
+
+      /* ------------------------------------------------------------------------
+         2. MOBILE MENU TOGGLE
+         ------------------------------------------------------------------------ */
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileNav = document.getElementById('mobile-nav');
+
+      if (menuToggle && mobileNav) {
+        menuToggle.addEventListener('click', () => {
+          const open = mobileNav.classList.toggle('open');
+          menuToggle.setAttribute('aria-expanded', String(open));
+        });
+
+        mobileNav.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => {
+            mobileNav.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
+      /* ------------------------------------------------------------------------
+         3. QUIET TOAST & SAFE CLIPBOARD COPY
+         ------------------------------------------------------------------------ */
+      const toastEl = document.getElementById('toast');
+      let toastTimer = null;
+
+      function showToast(msg) {
+        if (!toastEl) return;
+        toastEl.textContent = msg;
+        toastEl.classList.add('visible');
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toastEl.classList.remove('visible'), 2100);
+      }
+
+      function copyText(text, label) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, text.length);
+        try {
+          document.execCommand('copy');
+          showToast(label || 'Copied');
+        } catch (err) {
+          showToast(text);
+        }
+        document.body.removeChild(ta);
+      }
+
+      document.querySelectorAll('.copy-email-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const email = btn.getAttribute('data-email') || 'harshalmuthiyan@gmail.com';
+          copyText(email, 'Email copied to clipboard');
+        });
+      });
+
+      /* ------------------------------------------------------------------------
+         4. SCROLL HAIRLINE & HEADER BORDER (rAF-throttled)
+         ------------------------------------------------------------------------ */
+      const hairline = document.getElementById('scroll-hairline');
+      const header = document.getElementById('site-header');
+      let scrollQueued = false;
+
+      function onScrollFrame() {
+        scrollQueued = false;
+        const y = window.scrollY;
+        if (header) header.classList.toggle('scrolled', y > 14);
+        if (hairline) {
+          const max = document.documentElement.scrollHeight - window.innerHeight;
+          const pct = max > 0 ? Math.min(1, Math.max(0, y / max)) : 0;
+          hairline.style.transform = 'scaleX(' + pct.toFixed(4) + ')';
+        }
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!scrollQueued) {
+          scrollQueued = true;
+          requestAnimationFrame(onScrollFrame);
+        }
+      }, { passive: true });
+
+      /* ------------------------------------------------------------------------
+         5. GLIDING FILTER PILLS (WORK & WRITING)
+         ------------------------------------------------------------------------ */
+      function positionGlider(gliderId, selector) {
+        const glider = document.getElementById(gliderId);
+        const active = document.querySelector(selector + '.active');
+        if (!glider || !active) return;
+        glider.style.width = active.offsetWidth + 'px';
+        glider.style.transform = 'translate3d(' + active.offsetLeft + 'px, 0, 0)';
+      }
+
+      const workBtns = document.querySelectorAll('[data-work-filter]');
+      const projectCards = document.querySelectorAll('.project-card');
+
+      workBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const filter = btn.getAttribute('data-work-filter');
+          workBtns.forEach((b) => {
+            const on = b === btn;
+            b.classList.toggle('active', on);
+            b.setAttribute('aria-selected', String(on));
+          });
+          positionGlider('work-glider', '[data-work-filter]');
+
+          projectCards.forEach((card) => {
+            const cats = (card.getAttribute('data-cats') || '').split(/\s+/);
+            const show = filter === 'all' || cats.includes(filter);
+            card.classList.toggle('is-hidden', !show);
+            if (show && !prefersReducedMotion) {
+              card.classList.remove('fade-in');
+              void card.offsetWidth;
+              card.classList.add('fade-in');
+            }
+          });
+        });
+      });
+
+      /* ------------------------------------------------------------------------
+         6. WRITING / BLOG GRID RENDERING
+         ------------------------------------------------------------------------ */
+      const blogGridEl = document.getElementById('blog-grid');
+      const blogBtns = document.querySelectorAll('[data-blog-filter]');
+      let activeBlogCat = 'all';
+
+      function renderBlogGrid() {
+        if (!blogGridEl) return;
+        const posts = BLOG_POSTS.filter((p) => activeBlogCat === 'all' || p.category === activeBlogCat);
+
+        if (posts.length === 0) {
+          blogGridEl.innerHTML = '<p style="color:var(--text-3); font-size:0.9rem;">No posts in this category yet.</p>';
+          return;
+        }
+
+        blogGridEl.innerHTML = posts
+          .map((post) => `
+            <button type="button" class="blog-card" data-open-post="${post.slug}">
+              <div class="blog-meta">
+                <span class="blog-cat">${post.category}</span>
+                <span>${post.readTime}</span>
+              </div>
+              <h3 class="blog-title">${post.title}</h3>
+              <p class="blog-excerpt">${post.excerpt}</p>
+              <span class="blog-read">Read note &rarr;</span>
+            </button>
+          `)
+          .join('');
+
+        blogGridEl.querySelectorAll('[data-open-post]').forEach((card) => {
+          card.addEventListener('click', () => openPostSheet(card.getAttribute('data-open-post'), true));
+        });
+      }
+
+      blogBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          activeBlogCat = btn.getAttribute('data-blog-filter');
+          blogBtns.forEach((b) => {
+            const on = b === btn;
+            b.classList.toggle('active', on);
+            b.setAttribute('aria-selected', String(on));
+          });
+          positionGlider('blog-glider', '[data-blog-filter]');
+          renderBlogGrid();
+        });
+      });
+
+      /* ------------------------------------------------------------------------
+         7. SLIDE-OVER CASE STUDY & READING SHEET
+         ------------------------------------------------------------------------ */
+      const sheet = document.getElementById('sheet');
+      const sheetBackdrop = document.getElementById('sheet-backdrop');
+      const sheetLabel = document.getElementById('sheet-label');
+      const sheetBody = document.getElementById('sheet-body');
+      const sheetProgress = document.getElementById('sheet-progress');
+      const sheetCloseBtn = document.getElementById('sheet-close-btn');
+      const sheetShareBtn = document.getElementById('sheet-share-btn');
+
+      let activeSlug = null;
+
+      function openSheet() {
+        sheetBody.scrollTop = 0;
+        if (sheetProgress) sheetProgress.style.transform = 'scaleX(0)';
+        sheetBackdrop.classList.add('open');
+        sheet.classList.add('open');
+        sheet.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeSheet() {
+        sheet.classList.remove('open');
+        sheet.setAttribute('aria-hidden', 'true');
+        sheetBackdrop.classList.remove('open');
+        document.body.style.overflow = '';
+        activeSlug = null;
+        if (window.location.hash.startsWith('#post/')) {
+          history.replaceState(null, '', '#writing');
+        }
+      }
+
+      function openProjectSheet(key) {
+        const p = PROJECTS[key];
+        if (!p) return;
+        activeSlug = null;
+        sheetLabel.textContent = 'Project Case Study';
+        sheetShareBtn.style.display = 'none';
+
+        const bullets = p.highlights.map((h) => `<li>${h}</li>`).join('');
+        const specs = p.specs.map((s) => `
+          <div class="spec-row">
+            <span class="spec-k">${s.k}</span>
+            <span class="spec-v">${s.v}</span>
+          </div>
+        `).join('');
+
+        sheetBody.innerHTML = `
+          <div class="sheet-prose">
+            <div class="sheet-kicker">${p.kicker}</div>
+            <h1 class="sheet-title">${p.title}</h1>
+            <p class="sheet-lead">${p.lead}</p>
+            <h3 class="sheet-h">Key Contributions</h3>
+            <ul>${bullets}</ul>
+            <h3 class="sheet-h">Technical Specifications</h3>
+            <div class="spec-list">${specs}</div>
+          </div>
+        `;
+        openSheet();
+      }
+
+      function openPostSheet(slug, updateHash) {
+        const idx = BLOG_POSTS.findIndex((p) => p.slug === slug);
+        if (idx === -1) return;
+        const post = BLOG_POSTS[idx];
+        activeSlug = slug;
+
+        sheetLabel.textContent = post.category + ' · ' + post.readTime;
+        sheetShareBtn.style.display = 'inline-flex';
+
+        const prev = BLOG_POSTS[(idx - 1 + BLOG_POSTS.length) % BLOG_POSTS.length];
+        const next = BLOG_POSTS[(idx + 1) % BLOG_POSTS.length];
+
+        sheetBody.innerHTML = `
+          <article class="sheet-prose">
+            <div class="sheet-kicker">${post.date}</div>
+            <h1 class="sheet-title">${post.title}</h1>
+            <p class="sheet-lead">${post.excerpt}</p>
+            ${post.content}
+            <div class="sheet-nav">
+              <button type="button" class="sheet-nav-btn" data-jump-post="${prev.slug}">&larr; Previous note</button>
+              <button type="button" class="sheet-nav-btn" data-jump-post="${next.slug}">Next note &rarr;</button>
+            </div>
+          </article>
+        `;
+
+        sheetBody.querySelectorAll('[data-jump-post]').forEach((b) => {
+          b.addEventListener('click', () => openPostSheet(b.getAttribute('data-jump-post'), true));
+        });
+
+        openSheet();
+        if (updateHash) history.replaceState(null, '', '#post/' + slug);
+      }
+
+      document.querySelectorAll('[data-open-project]').forEach((card) => {
+        card.addEventListener('click', () => openProjectSheet(card.getAttribute('data-open-project')));
+      });
+
+      if (sheetCloseBtn) sheetCloseBtn.addEventListener('click', closeSheet);
+      if (sheetBackdrop) sheetBackdrop.addEventListener('click', closeSheet);
+
+      if (sheetShareBtn) {
+        sheetShareBtn.addEventListener('click', () => {
+          if (!activeSlug) return;
+          const base = window.location.href.split('#')[0];
+          copyText(base + '#post/' + activeSlug, 'Article link copied');
+        });
+      }
+
+      if (sheetBody && sheetProgress) {
+        sheetBody.addEventListener('scroll', () => {
+          const max = sheetBody.scrollHeight - sheetBody.clientHeight;
+          const pct = max > 0 ? Math.min(1, Math.max(0, sheetBody.scrollTop / max)) : 0;
+          sheetProgress.style.transform = 'scaleX(' + pct.toFixed(4) + ')';
+        }, { passive: true });
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && sheet.classList.contains('open')) closeSheet();
+      });
+
+      function checkHash() {
+        const h = window.location.hash || '';
+        if (h.startsWith('#post/')) {
+          const slug = h.replace('#post/', '').trim();
+          if (BLOG_POSTS.some((p) => p.slug === slug)) openPostSheet(slug, false);
+        }
+      }
+      window.addEventListener('hashchange', checkHash);
+
+      /* ------------------------------------------------------------------------
+         8. SUBTLE SCROLL REVEAL & INITIALIZATION
+         ------------------------------------------------------------------------ */
+      const reveals = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window && !prefersReducedMotion) {
+        const obs = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.08, rootMargin: '0px 0px -24px 0px' }
+        );
+        reveals.forEach((el) => obs.observe(el));
+      } else {
+        reveals.forEach((el) => el.classList.add('visible'));
+      }
+
+      window.addEventListener('resize', () => {
+        positionGlider('work-glider', '[data-work-filter]');
+        positionGlider('blog-glider', '[data-blog-filter]');
+      });
+
+      window.addEventListener('load', () => {
+        renderBlogGrid();
+        positionGlider('work-glider', '[data-work-filter]');
+        positionGlider('blog-glider', '[data-blog-filter]');
+        onScrollFrame();
+        checkHash();
+      });
+    })();
+  </script>
+</body>
+</html>
